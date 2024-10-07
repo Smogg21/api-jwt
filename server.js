@@ -7,17 +7,12 @@ dotenv.config();
 
 const app = express();
 
-// Conectar a la base de datos
 connectDB();
 
-// Middleware
 app.use(express.json());
 app.use(cors());
 
-// Rutas
 app.use('/api/auth', require('./routes/auth'));
-
-// Ruta de prueba
 app.get('/', (req, res) => res.send('API funcionando'));
 
 const PORT = process.env.PORT || 5000;

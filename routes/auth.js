@@ -1,12 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const { register } = require('../controllers/authController');
+const { register, getMe } = require('../controllers/authController');
 const authMiddleware = require('../middleware/authMiddleware');
+const User = require('../models/User'); // Importación del modelo User
 
-// Ruta para registrar usuario
+
 router.post('/register', register);
 
-// Ruta protegida de ejemplo
+
 router.get('/me', authMiddleware, async (req, res) => {
     try {
         const user = await User.findById(req.user.id).select('-password');
